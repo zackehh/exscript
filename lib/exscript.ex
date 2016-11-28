@@ -131,7 +131,11 @@ defmodule Exscript do
     end)
   end
 
-  defp consolidated_path, do: Mix.Project.consolidation_path(Mix.Project.config)
+  defp consolidated_path do
+    Mix.Project.config
+    |> Mix.Project.build_path
+    |> Path.join("consolidated")
+  end
 
   defp build_comment(user_comment) do
     "%% #{user_comment}\n"
